@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Platos Típicos{% endblock %}
+
+{% block body %}
+
+    <section class="col-6" id="formPlato" name="formPlato">
+
+      <form method="POST" action="{{path('platos.editarPlato')}}" class="form">
+        <div class="form-group">
+          <label for="txtNombre">Nombre</label>
+          <input type="text" class="form-control" id="txtNombre" name="txtNombre" aria-describedby="Nombre" placeholder="Introduce un nombre" value="{{plato.nombre}}">
+        </div>
+        <div class="form-group">
+          <label for="txtDescripcion">Descripcion</label>
+          <textarea type="text" class="form-control" id="txtDescripcion" name="txtDescripcion" aria-describedby="Descripcion" placeholder="Introduce un descripcion" rows="5">{{plato.descripcion}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="txtPrecio">Precio</label>
+          <input type="number" class="form-control" id="txtPrecio" name="txtPrecio" aria-describedby="Precio" placeholder="Introduce un precio" value="{{plato.precio}}">
+        </div>
+        <div class="form-group">
+          <label for="txtImagen">Imagen</label>
+          <input type="text" class="form-control" id="txtImagen" name="txtImagen" aria-describedby="Imagen" placeholder="Introduce una imagen" value="{{plato.imagen}}">
+        </div>
+          <input type="hidden" id="txtId" name="txtId" value="{{plato.id}}">
+        <button type="submit" class="btn btn-primary">Editar</button>
+      </form>
+    </section>
+
+{% endblock %}

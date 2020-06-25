@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bebidas Típicas{% endblock %}
+
+{% block body %}
+
+    <section class="col-6 d-none" id="formPlato" name="formPlato">
+
+      <form method="POST" action="{{path('bebidas.crear')}}" class="form">
+        <div class="form-group">
+          <label for="txtNombre">Nombre</label>
+          <input type="text" class="form-control" id="txtNombre" name="txtNombre" aria-describedby="Nombre" placeholder="Introduce un nombre">
+        </div>
+        <div class="form-group">
+          <label for="txtDescripcion">Descripcion</label>
+          <textarea type="text" class="form-control" id="txtDescripcion" name="txtDescripcion" aria-describedby="Descripcion" placeholder="Introduce un descripcion" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="txtPrecio">Precio</label>
+          <input type="number" class="form-control" id="txtPrecio" name="txtPrecio" aria-describedby="Precio" placeholder="Introduce un precio">
+        </div>
+        <div class="form-group">
+          <label for="txtImagen">Imagen</label>
+          <input type="text" class="form-control" id="txtImagen" name="txtImagen" aria-describedby="Imagen" placeholder="Introduce una imagen">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </section>
+
+
+    </section><!-- End Menu Section -->
+
+    <!-- ======= Specials Section ======= -->
+    <section id="specials" class="specials">
+      <nav class="nav-menu d-none d-lg-block m-5">
+        <ul class="mx-auto">
+          <li class="book-a-table text-center"><a id="btnAgregar" name="btnAgregar" href="#book-a-table">Agregar Bebidas</a></li>
+        </ul>
+      </nav>
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Bebidas</h2>
+          <p>Pruebe nuestras bebidas típicas</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-3">
+            <ul class="nav nav-tabs flex-column">
+              {% for bebida in bebidas %}
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-{{bebida.id}}">{{ bebida.nombre }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+              {% for bebida in bebidas %}
+              <div class="tab-pane" id="tab-{{bebida.id}}">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <a href="{{path('bebidas.mostrar',{id: bebida.id})}}"><p class="font-italic">{{bebida.descripcion}}</p></a>
+                    <p class="menu-content">Precio: <span>{{bebida.precio}}€</span></p>             
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="/assets/img/{{bebida.imagen}}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Specials Section -->
+    <script>
+      let formulario=document.getElementById("formPlato");
+      let boton=document.getElementById("btnAgregar");
+      boton.addEventListener('click',function(){
+          formulario.classList.remove('d-none');
+      });
+    </script>
+
+{% endblock %}

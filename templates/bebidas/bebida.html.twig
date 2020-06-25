@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Especialidades GastroDonostia{% endblock %}
+
+{% block body %}
+	<section id="specials" class="specials">
+      <div class="container" data-aos="fade-up">
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="tab-1">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>{{bebida.nombre}}</h3>
+                    <p class="font-italic">{{bebida.descripcion}}</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="/assets/img/{{bebida.imagen}}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Specials Section -->
+{% endblock %}

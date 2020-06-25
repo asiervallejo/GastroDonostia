@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GastroDonostia{% endblock %}
+
+{% block body %}
+
+    <section class="col-6 d-none" id="formPlato" name="formPlato">
+
+      <form method="POST" action="{{path('bebidas.crear')}}" class="form">
+        <div class="form-group">
+          <label for="txtNombre">Título</label>
+          <input type="text" class="form-control" id="txtTitulo" name="txtTitulo" aria-describedby="Nombre" placeholder="Introduce un nombre">
+        </div>
+        <div class="form-group">
+          <label for="txtDescripcion">Descripcion</label>
+          <textarea type="text" class="form-control" id="txtDescripcion" name="txtDescripcion" aria-describedby="Descripcion" placeholder="Introduce un descripcion" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="txtImagen">Imagen</label>
+          <input type="text" class="form-control" id="txtImagen" name="txtImagen" aria-describedby="Imagen" placeholder="Introduce una imagen">
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+      </form>
+    </section>
+<!-- ======= Events Section ======= -->
+    <section id="events" class="events">
+            <nav class="nav-menu d-none d-lg-block m-5">
+        <ul class="mx-auto">
+          <li class="book-a-table text-center"><a id="btnAgregar" name="btnAgregar" href="#book-a-table">Agregar Noticias</a></li>
+        </ul>
+      </nav>
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Noticias</h2>
+          <p>Últimas noticias</p>
+        </div>
+
+        <div class="owl-carousel events-carousel" data-aos="fade-up" data-aos-delay="100">
+          {% for noticia in noticias %}
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="/assets/img/{{noticia.imagen}}" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>{{noticia.titulo}}</h3>
+              <p>
+                {{noticia.descripcion}}
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section><!-- End Events Section -->
+    <script>
+      let formulario=document.getElementById("formPlato");
+      let boton=document.getElementById("btnAgregar");
+      boton.addEventListener('click',function(){
+          formulario.classList.remove('d-none');
+      });
+    </script>
+
+{% endblock %}
